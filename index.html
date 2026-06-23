@@ -8,35 +8,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 :root{--primary:#1e40af;--dark:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;--green:#16a34a;--red:#dc2626;}
 *{box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);margin:0;padding:20px;color:var(--dark)}
-.container{max-width:900px;margin:0 auto;background:white;border-radius:12px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:relative}
-.invoice-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;border-bottom:3px solid var(--primary);padding-bottom:20px}
-.logo{width:120px;height:120px;object-fit:contain;background:white;border-radius:8px;padding:5px}
-h1{color:var(--primary);margin:0;font-size:28px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+body{background:var(--bg);margin:0;padding:15px;color:var(--dark)}
+.container{max-width:900px;margin:0 auto;background:white;border-radius:12px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:relative;overflow-x:hidden}
+.invoice-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;border-bottom:3px solid var(--primary);padding-bottom:15px;flex-wrap:wrap;gap:10px}
+.logo{width:100px;height:100px;object-fit:contain;background:white;border-radius:8px;padding:5px;flex-shrink:0}
+h1{color:var(--primary);margin:0;font-size:24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
 input,textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px}
 textarea{resize:vertical;min-height:60px}
-table{width:100%;border-collapse:collapse;margin:20px 0}
-th{background:var(--primary);color:white;padding:12px;text-align:left;font-size:13px}
-td{padding:10px;border-bottom:1px solid var(--border)}
-td input{border:none;padding:6px;background:transparent}
-.btn{background:var(--primary);color:white;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:8px}
+.table-wrap{overflow-x:auto;margin:15px -20px;padding:0 20px}
+table{width:100%;min-width:500px;border-collapse:collapse}
+th{background:var(--primary);color:white;padding:10px 8px;text-align:left;font-size:12px;white-space:nowrap}
+td{padding:8px;border-bottom:1px solid var(--border)}
+td input{border:none;padding:6px;background:transparent;width:100%;font-size:13px}
+.btn{background:var(--primary);color:white;border:none;padding:12px 16px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:6px;margin-bottom:6px;font-size:14px}
 .btn-green{background:var(--green)}
 .btn-red{background:var(--red)}
 .btn-secondary{background:var(--muted)}
-.totals{text-align:right;margin-top:20px;font-size:15px}
-.totals div{margin:6px 0}
-.total-big{font-size:22px;font-weight:700;color:var(--green)}
-.company-box{background:#f0f9ff;border:2px solid var(--primary);border-radius:8px;padding:18px;margin-bottom:20px;font-size:13px;line-height:1.7}
+.totals{text-align:right;margin-top:20px;font-size:14px}
+.totals div{margin:6px 0;display:flex;justify-content:flex-end;align-items:center;gap:8px}
+.total-big{font-size:20px;font-weight:700;color:var(--green)}
+.company-box{background:#f0f9ff;border:2px solid var(--primary);border-radius:8px;padding:14px;margin-bottom:18px;font-size:12px;line-height:1.6;word-wrap:break-word}
 .company-box b{color:var(--primary)}
-.footer-note{text-align:center;font-size:11px;color:var(--muted);margin-top:20px;padding-top:15px;border-top:1px solid var(--border)}
-.paid-stamp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:120px;font-weight:900;color:var(--red);border:8px solid var(--red);padding:20px 40px;border-radius:20px;opacity:0.25;z-index:100;pointer-events:none;text-transform:uppercase}
+.footer-note{text-align:center;font-size:10px;color:var(--muted);margin-top:15px;padding-top:12px;border-top:1px solid var(--border)}
+.paid-stamp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:80px;font-weight:900;color:var(--red);border:6px solid var(--red);padding:15px 30px;border-radius:15px;opacity:0.25;z-index:100;pointer-events:none;text-transform:uppercase}
+@media(max-width:600px){.paid-stamp{font-size:50px;padding:10px 20px;border-width:4px}}
 .paid-stamp.active{display:block}
-.checkbox-group{display:flex;align-items:center;gap:8px;margin-top:8px}
-.checkbox-group input[type="checkbox"]{width:18px;height:18px}
+.checkbox-group{display:flex;align-items:center;gap:6px}
+.checkbox-group input[type="checkbox"]{width:16px;height:16px}
 .no-print{display:block}
-@media print{.no-print{display:none}body{background:white}}
+@media print{.no-print{display:none}body{background:white}.container{box-shadow:none;padding:15px}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -49,7 +52,7 @@ td input{border:none;padding:6px;background:transparent}
   <div class="invoice-header">
     <div>
       <h1>INVOICE</h1>
-      <div style="font-size:12px;color:var(--muted);margin-top:5px">Professional Services | Nationwide & International</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">Professional Services | Nationwide & International</div>
     </div>
     <img src="https://files.catbox.moe/0zympr.jpeg" class="logo" alt="Twinz Cooperate Logo">
   </div>
@@ -97,38 +100,40 @@ td input{border:none;padding:6px;background:transparent}
     </div>
   </div>
 
-  <table id="itemsTable">
-    <thead>
-      <tr>
-        <th style="width:5%">#</th>
-        <th style="width:45%">Description</th>
-        <th style="width:10%">Qty</th>
-        <th style="width:15%">Unit Price R</th>
-        <th style="width:15%">Amount R</th>
-        <th style="width:10%" class="no-print"></th>
-      </tr>
-    </thead>
-    <tbody id="itemsBody">
-      <tr>
-        <td>1</td>
-        <td><input type="text" placeholder="Service/Product description"></td>
-        <td><input type="number" value="1" min="1" oninput="calc()"></td>
-        <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
-        <td class="amount">0.00</td>
-        <td class="no-print"><button class="btn-danger" onclick="removeRow(this)">X</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+    <table id="itemsTable">
+      <thead>
+        <tr>
+          <th style="width:8%">#</th>
+          <th style="width:42%">Description</th>
+          <th style="width:12%">Qty</th>
+          <th style="width:18%">Unit Price R</th>
+          <th style="width:18%">Amount R</th>
+          <th style="width:8%" class="no-print"></th>
+        </tr>
+      </thead>
+      <tbody id="itemsBody">
+        <tr>
+          <td>1</td>
+          <td><input type="text" placeholder="Service/Product description"></td>
+          <td><input type="number" value="1" min="1" oninput="calc()"></td>
+          <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
+          <td class="amount">0.00</td>
+          <td class="no-print"><button class="btn-danger" onclick="removeRow(this)" style="padding:6px 8px;font-size:12px">X</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <button class="btn-secondary no-print" onclick="addRow()">+ Add Item</button>
 
   <div class="totals">
     <div>Subtotal: R<span id="subtotal">0.00</span></div>
     <div>
-      <label style="display:inline">Discount R</label>
-      <input type="number" id="discount" value="0" step="0.01" style="width:100px;display:inline" oninput="calc()">
+      <label style="margin:0">Discount R</label>
+      <input type="number" id="discount" value="0" step="0.01" style="width:120px" oninput="calc()">
     </div>
-    <div class="checkbox-group" style="justify-content:flex-end">
+    <div class="checkbox-group">
       <input type="checkbox" id="applyVAT" checked onchange="calc()">
       <label for="applyVAT" style="margin:0">Apply VAT 15%</label>
     </div>
@@ -136,7 +141,7 @@ td input{border:none;padding:6px;background:transparent}
     <div class="total-big">TOTAL: R<span id="total">0.00</span></div>
   </div>
 
-  <div style="margin-top:30px">
+  <div style="margin-top:25px">
     <label>Notes / Payment Terms</label>
     <textarea placeholder="E.g. Payment due within 7 days. Use invoice number as reference.">Thank you for choosing Twinz Cooperate Services!</textarea>
   </div>
@@ -146,7 +151,7 @@ td input{border:none;padding:6px;background:transparent}
     Office Burgersfort Praktiseer Ext 02 | We supply all over South Africa and abroad
   </div>
 
-  <div style="margin-top:20px" class="no-print">
+  <div style="margin-top:15px" class="no-print">
     <button class="btn" onclick="window.print()">🖨️ Print</button>
     <button class="btn-green" id="pdfBtn" onclick="downloadPDF()">⬇️ Download PDF</button>
     <button class="btn-red" onclick="togglePaid()">💰 Mark as PAID</button>
@@ -168,7 +173,7 @@ function addRow() {
     <td><input type="number" value="1" min="1" oninput="calc()"></td>
     <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
     <td class="amount">0.00</td>
-    <td class="no-print"><button class="btn-danger" onclick="removeRow(this)">X</button></td>
+    <td class="no-print"><button class="btn-danger" onclick="removeRow(this)" style="padding:6px 8px;font-size:12px">X</button></td>
   `;
 }
 
@@ -205,7 +210,7 @@ function calc() {
   document.getElementById('subtotal').innerText = subtotal.toFixed(2);
   document.getElementById('vat').innerText = vat.toFixed(2);
   document.getElementById('total').innerText = total.toFixed(2);
-  document.getElementById('vatRow').style.display = applyVAT ? 'block' : 'none';
+  document.getElementById('vatRow').style.display = applyVAT ? 'flex' : 'none';
 }
 
 function togglePaid() {
@@ -218,7 +223,6 @@ async function downloadPDF() {
   const originalText = btn.innerText;
   btn.innerText = '⏳ Creating PDF...';
   
-  // Hide buttons temporarily for clean PDF
   document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
   
   await new Promise(resolve => setTimeout(resolve, 100));
@@ -233,7 +237,6 @@ async function downloadPDF() {
   let invNum = document.getElementById('invNum').value;
   pdf.save(`Twinz_Invoice_${invNum}.pdf`);
   
-  // Show buttons again
   document.querySelectorAll('.no-print').forEach(el => el.style.display = '');
   btn.innerText = originalText;
 }
