@@ -6,12 +6,12 @@
 <title>Twinz Cooperate Services - Invoice Generator</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-:root{--primary:#1e40af;--dark:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;--green:#16a34a;}
+:root{--primary:#1e40af;--dark:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;--green:#16a34a;--red:#dc2626;}
 *{box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);margin:0;padding:20px;color:var(--dark)}
-.container{max-width:900px;margin:0 auto;background:white;border-radius:12px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.container{max-width:900px;margin:0 auto;background:white;border-radius:12px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:relative}
 .invoice-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;border-bottom:3px solid var(--primary);padding-bottom:20px}
-.logo{width:120px;height:120px;object-fit:contain}
+.logo{width:120px;height:120px;object-fit:contain;background:white;border-radius:8px;padding:5px}
 h1{color:var(--primary);margin:0;font-size:28px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
 label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
@@ -23,7 +23,7 @@ td{padding:10px;border-bottom:1px solid var(--border)}
 td input{border:none;padding:6px;background:transparent}
 .btn{background:var(--primary);color:white;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:8px}
 .btn-green{background:var(--green)}
-.btn-danger{background:#dc2626}
+.btn-red{background:var(--red)}
 .btn-secondary{background:var(--muted)}
 .totals{text-align:right;margin-top:20px;font-size:15px}
 .totals div{margin:6px 0}
@@ -31,6 +31,8 @@ td input{border:none;padding:6px;background:transparent}
 .company-box{background:#f0f9ff;border:2px solid var(--primary);border-radius:8px;padding:18px;margin-bottom:20px;font-size:13px;line-height:1.7}
 .company-box b{color:var(--primary)}
 .footer-note{text-align:center;font-size:11px;color:var(--muted);margin-top:20px;padding-top:15px;border-top:1px solid var(--border)}
+.paid-stamp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:120px;font-weight:900;color:var(--red);border:8px solid var(--red);padding:20px 40px;border-radius:20px;opacity:0.25;z-index:100;pointer-events:none;text-transform:uppercase}
+.paid-stamp.active{display:block}
 @media print{.btn{display:none}body{background:white}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -39,12 +41,14 @@ td input{border:none;padding:6px;background:transparent}
 <body>
 
 <div class="container" id="invoice">
+  <div class="paid-stamp" id="paidStamp">PAID</div>
+  
   <div class="invoice-header">
     <div>
       <h1>INVOICE</h1>
       <div style="font-size:12px;color:var(--muted);margin-top:5px">Professional Services | Nationwide & International</div>
     </div>
-    <img src="attachment://0" class="logo" alt="Twinz Cooperate Logo">
+    <img src="https://files.catbox.moe/5nvz2o.jpg" class="logo" alt="Twinz Cooperate Logo">
   </div>
   
   <div class="company-box">
@@ -134,6 +138,7 @@ td input{border:none;padding:6px;background:transparent}
   <div style="margin-top:20px">
     <button class="btn" onclick="window.print()">🖨️ Print</button>
     <button class="btn-green" onclick="downloadPDF()">⬇️ Download PDF</button>
+    <button class="btn-red" onclick="togglePaid()">💰 Mark as PAID</button>
   </div>
 </div>
 
@@ -182,6 +187,10 @@ function calc() {
   document.getElementById('subtotal').innerText = subtotal.toFixed(2);
   document.getElementById('vat').innerText = vat.toFixed(2);
   document.getElementById('total').innerText = total.toFixed(2);
+}
+
+function togglePaid() {
+  document.getElementById('paidStamp').classList.toggle('active');
 }
 
 async function downloadPDF() {
