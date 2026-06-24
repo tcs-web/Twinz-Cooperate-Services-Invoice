@@ -29,11 +29,13 @@ td input{border:none;padding:1mm;font-size:9px;background:transparent}
 .total-big{font-size:14px;font-weight:700;color:#16a34a}
 .footer-note{text-align:center;font-size:7px;color:#6b7280;margin-top:5mm;padding-top:3mm;border-top:1px solid #e5e7eb}
 
-/* When printing: hide borders, make it look like printed doc */
+.admin-btn{background:#f59e0b;color:white;border:none;padding:2mm 4mm;border-radius:3px;font-size:7px;font-weight:600;cursor:pointer;margin-bottom:3mm}
+.admin-btn:hover{background:#d97706}
+
 @media print{
- .no-print{display:none}
+.no-print{display:none}
   body{padding:0}
- .container{width:210mm}
+.container{width:210mm}
   input,textarea{border:none!important;background:transparent!important}
   td input{border:none!important}
 @page{size:A4 portrait;margin:10mm}
@@ -42,6 +44,9 @@ td input{border:none;padding:1mm;font-size:9px;background:transparent}
 <body>
 
 <div class="container" id="invoice">
+  <!-- Admin button - only visible on screen -->
+  <button class="admin-btn no-print" id="unlockBtn" onclick="unlockFields()">🔓 Unlock for Edit</button>
+
   <div class="invoice-header">
     <div>
       <h1>INVOICE</h1>
@@ -135,7 +140,7 @@ td input{border:none;padding:1mm;font-size:9px;background:transparent}
   </div>
 
   <div class="no-print" style="margin-top:4mm;text-align:center;font-size:7px;color:#9ca3af">
-    Fill details > Chrome 3 dots > Print > Save as PDF > Paper size A4
+    Fill details > Clicks auto-lock in 3sec > Chrome Print > Save as PDF > A4
   </div>
 </div>
 
@@ -161,12 +166,19 @@ function calc() {
   document.getElementById('total').innerText = total.toFixed(2);
 }
 
+function unlockFields() {
+  document.querySelectorAll('input:not(#invNum):not(#invDate), textarea').forEach(el => {
+    el.readOnly = false;
+  });
+  document.getElementById('unlockBtn').innerText = '🔒 Locked - Click to Edit Again';
+}
+
 calc();
 
-// Lock all inputs after 3 seconds so you can fill then it locks
+// Auto-lock after 3 seconds
 setTimeout(() => {
-  document.querySelectorAll('input, textarea').forEach(el => {
-    if(!el.readOnly) el.readOnly = true;
+  document.querySelectorAll('input:not(#invNum):not(#invDate), textarea').forEach(el => {
+    el.readOnly = true;
   });
 }, 3000);
 </script>
