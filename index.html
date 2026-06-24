@@ -8,38 +8,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 :root{--primary:#1e40af;--dark:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;--green:#16a34a;--red:#dc2626;}
 *{box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);margin:0;padding:15px;color:var(--dark)}
-.container{max-width:900px;margin:0 auto;background:white;border-radius:12px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:relative;overflow-x:hidden}
-.invoice-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;border-bottom:3px solid var(--primary);padding-bottom:15px;flex-wrap:wrap;gap:10px}
-.logo{width:100px;height:100px;object-fit:contain;background:white;border-radius:8px;padding:5px;flex-shrink:0}
-h1{color:var(--primary);margin:0;font-size:24px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
+body{background:var(--bg);margin:0;padding:8px;color:var(--dark)}
+.container{max-width:210mm;margin:0 auto;background:white;border-radius:8px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,0.08);position:relative;overflow:hidden}
+.invoice-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:2px solid var(--primary);padding-bottom:8px;gap:8px}
+.header-left{flex:1;min-width:0}
+.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:4px;padding:3px;flex-shrink:0}
+h1{color:var(--primary);margin:0;font-size:18px;line-height:1.1}
+.subtitle{font-size:9px;color:var(--muted);margin-top:2px}
+@media(max-width:600px){
+  .invoice-header{flex-direction:column;align-items:center;text-align:center}
+  .logo{order:-1;width:60px;height:60px;margin-bottom:5px}
+  h1{font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
-label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
-input,textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px}
-textarea{resize:vertical;min-height:60px}
-.table-wrap{overflow-x:auto;margin:15px -20px;padding:0 20px}
-table{width:100%;min-width:500px;border-collapse:collapse}
-th{background:var(--primary);color:white;padding:10px 8px;text-align:left;font-size:12px;white-space:nowrap}
-td{padding:8px;border-bottom:1px solid var(--border)}
-td input{border:none;padding:6px;background:transparent;width:100%;font-size:13px}
-.btn{background:var(--primary);color:white;border:none;padding:12px 16px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:6px;margin-bottom:6px;font-size:14px}
+label{display:block;font-size:8px;font-weight:600;color:var(--muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:0.3px}
+input,textarea{width:100%;padding:5px;border:1px solid var(--border);border-radius:4px;font-size:11px}
+textarea{resize:none;min-height:35px}
+.table-wrap{overflow-x:auto;margin:8px -12px;padding:0 12px}
+table{width:100%;min-width:450px;border-collapse:collapse;font-size:10px}
+th{background:var(--primary);color:white;padding:5px 4px;text-align:left;white-space:nowrap;font-weight:600}
+td{padding:4px;border-bottom:1px solid var(--border)}
+td input{border:none;padding:2px;background:transparent;width:100%;font-size:10px}
+.btn{background:var(--primary);color:white;border:none;padding:8px 12px;border-radius:5px;font-weight:600;cursor:pointer;margin-right:4px;margin-bottom:4px;font-size:12px}
 .btn-green{background:var(--green)}
 .btn-red{background:var(--red)}
-.btn-secondary{background:var(--muted)}
-.totals{text-align:right;margin-top:20px;font-size:14px}
-.totals div{margin:6px 0;display:flex;justify-content:flex-end;align-items:center;gap:8px}
-.total-big{font-size:20px;font-weight:700;color:var(--green)}
-.company-box{background:#f0f9ff;border:2px solid var(--primary);border-radius:8px;padding:14px;margin-bottom:18px;font-size:12px;line-height:1.6;word-wrap:break-word}
+.btn-secondary{background:var(--muted);font-size:11px;padding:6px 10px}
+.totals{text-align:right;margin-top:8px;font-size:11px}
+.totals div{margin:3px 0;display:flex;justify-content:flex-end;align-items:center;gap:5px;flex-wrap:wrap}
+.total-big{font-size:16px;font-weight:700;color:var(--green)}
+.company-box{background:#f0f9ff;border:1px solid var(--primary);border-radius:5px;padding:8px;margin-bottom:10px;font-size:9px;line-height:1.4;word-wrap:break-word}
 .company-box b{color:var(--primary)}
-.footer-note{text-align:center;font-size:10px;color:var(--muted);margin-top:15px;padding-top:12px;border-top:1px solid var(--border)}
-.paid-stamp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:80px;font-weight:900;color:var(--red);border:6px solid var(--red);padding:15px 30px;border-radius:15px;opacity:0.25;z-index:100;pointer-events:none;text-transform:uppercase}
-@media(max-width:600px){.paid-stamp{font-size:50px;padding:10px 20px;border-width:4px}}
+.footer-note{text-align:center;font-size:7px;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px solid var(--border)}
+.paid-stamp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:60px;font-weight:900;color:var(--red);border:4px solid var(--red);padding:10px 20px;border-radius:10px;opacity:0.20;z-index:100;pointer-events:none;text-transform:uppercase}
+@media(max-width:600px){.paid-stamp{font-size:35px;padding:6px 12px;border-width:3px}}
 .paid-stamp.active{display:block}
-.checkbox-group{display:flex;align-items:center;gap:6px}
-.checkbox-group input[type="checkbox"]{width:16px;height:16px}
+.checkbox-group{display:flex;align-items:center;gap:4px}
+.checkbox-group input[type="checkbox"]{width:12px;height:12px}
 .no-print{display:block}
-@media print{.no-print{display:none}body{background:white}.container{box-shadow:none;padding:15px}}
+@media print{.no-print{display:none}body{background:white}.container{box-shadow:none;padding:8px;max-width:210mm}}
+@page{size:A4;margin:8mm}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -50,19 +57,17 @@ td input{border:none;padding:6px;background:transparent;width:100%;font-size:13p
   <div class="paid-stamp" id="paidStamp">PAID</div>
   
   <div class="invoice-header">
-    <div>
+    <div class="header-left">
       <h1>INVOICE</h1>
-      <div style="font-size:11px;color:var(--muted);margin-top:4px">Professional Services | Nationwide & International</div>
+      <div class="subtitle">Professional Services | Nationwide & International</div>
     </div>
     <img src="https://files.catbox.moe/0zympr.jpeg" class="logo" alt="Twinz Cooperate Logo">
   </div>
   
   <div class="company-box">
     <b>Twinz Cooperate Services Pty Ltd</b><br>
-    <b>Address:</b> Office Burgersfort Praktiseer Ext 02<br>
-    <b>Email:</b> twinz.cooperate.services@gmail.com<br>
-    <b>Contact:</b> 068 254 7352 / 069 894 9596<br>
-    <b>Tax/VAT No:</b> 9819040198 | <b>Reg No:</b> 2024/444303/07<br>
+    <b>Address:</b> Office Burgersfort Praktiseer Ext 02 | <b>Email:</b> twinz.cooperate.services@gmail.com<br>
+    <b>Contact:</b> 068 254 7352 / 069 894 9596 | <b>Tax/VAT:</b> 9819040198 | <b>Reg:</b> 2024/444303/07<br>
     <b>Bank:</b> Standard Bank | <b>Acc:</b> 10 26 459 443 4 | <b>Branch:</b> 006145<br>
     <small style="color:var(--green);font-weight:600">We supply all over South Africa and abroad</small>
   </div>
@@ -80,8 +85,8 @@ td input{border:none;padding:6px;background:transparent;width:100%;font-size:13p
 
   <div class="grid">
     <div>
-      <label>Bill To - Customer Name</label>
-      <input type="text" id="custName" placeholder="ABC Company Pty Ltd">
+      <label>Bill To</label>
+      <input type="text" id="custName" placeholder="Customer Name">
     </div>
     <div>
       <label>Customer VAT/Tax No</label>
@@ -91,8 +96,8 @@ td input{border:none;padding:6px;background:transparent;width:100%;font-size:13p
 
   <div class="grid">
     <div>
-      <label>Customer Address</label>
-      <textarea id="custAddress" placeholder="Street, City, Province"></textarea>
+      <label>Address</label>
+      <textarea id="custAddress" placeholder="Street, City"></textarea>
     </div>
     <div>
       <label>Contact / Email</label>
@@ -104,22 +109,22 @@ td input{border:none;padding:6px;background:transparent;width:100%;font-size:13p
     <table id="itemsTable">
       <thead>
         <tr>
-          <th style="width:8%">#</th>
-          <th style="width:42%">Description</th>
-          <th style="width:12%">Qty</th>
+          <th style="width:7%">#</th>
+          <th style="width:43%">Description</th>
+          <th style="width:10%">Qty</th>
           <th style="width:18%">Unit Price R</th>
           <th style="width:18%">Amount R</th>
-          <th style="width:8%" class="no-print"></th>
+          <th style="width:7%" class="no-print"></th>
         </tr>
       </thead>
       <tbody id="itemsBody">
         <tr>
           <td>1</td>
-          <td><input type="text" placeholder="Service/Product description"></td>
+          <td><input type="text" placeholder="Description"></td>
           <td><input type="number" value="1" min="1" oninput="calc()"></td>
           <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
           <td class="amount">0.00</td>
-          <td class="no-print"><button class="btn-danger" onclick="removeRow(this)" style="padding:6px 8px;font-size:12px">X</button></td>
+          <td class="no-print"><button class="btn-danger" onclick="removeRow(this)" style="padding:3px 5px;font-size:10px">X</button></td>
         </tr>
       </tbody>
     </table>
@@ -131,30 +136,29 @@ td input{border:none;padding:6px;background:transparent;width:100%;font-size:13p
     <div>Subtotal: R<span id="subtotal">0.00</span></div>
     <div>
       <label style="margin:0">Discount R</label>
-      <input type="number" id="discount" value="0" step="0.01" style="width:120px" oninput="calc()">
+      <input type="number" id="discount" value="0" step="0.01" style="width:80px" oninput="calc()">
     </div>
     <div class="checkbox-group">
       <input type="checkbox" id="applyVAT" checked onchange="calc()">
-      <label for="applyVAT" style="margin:0">Apply VAT 15%</label>
+      <label for="applyVAT" style="margin:0;font-size:9px">VAT 15%</label>
     </div>
-    <div id="vatRow">VAT 15%: R<span id="vat">0.00</span></div>
+    <div id="vatRow">VAT: R<span id="vat">0.00</span></div>
     <div class="total-big">TOTAL: R<span id="total">0.00</span></div>
   </div>
 
-  <div style="margin-top:25px">
-    <label>Notes / Payment Terms</label>
-    <textarea placeholder="E.g. Payment due within 7 days. Use invoice number as reference.">Thank you for choosing Twinz Cooperate Services!</textarea>
+  <div style="margin-top:8px">
+    <label style="font-size:8px">Notes</label>
+    <textarea placeholder="Payment terms">Thank you for choosing Twinz Cooperate Services!</textarea>
   </div>
 
   <div class="footer-note">
-    Twinz Cooperate Services Pty Ltd | twinz.cooperate.services@gmail.com | 068 254 7352 / 069 894 9596<br>
-    Office Burgersfort Praktiseer Ext 02 | We supply all over South Africa and abroad
+    Twinz Cooperate Services | twinz.cooperate.services@gmail.com | 068 254 7352 / 069 894 9596
   </div>
 
-  <div style="margin-top:15px" class="no-print">
+  <div style="margin-top:8px" class="no-print">
     <button class="btn" onclick="window.print()">🖨️ Print</button>
     <button class="btn-green" id="pdfBtn" onclick="downloadPDF()">⬇️ Download PDF</button>
-    <button class="btn-red" onclick="togglePaid()">💰 Mark as PAID</button>
+    <button class="btn-red" onclick="togglePaid()">💰 PAID</button>
   </div>
 </div>
 
@@ -166,14 +170,15 @@ document.getElementById('invNum').value += Date.now().toString().slice(-6);
 function addRow() {
   let tbody = document.getElementById('itemsBody');
   let rows = tbody.rows.length + 1;
+  if(rows > 8){alert('Max 8 items to fit 1 page');return}
   let row = tbody.insertRow();
   row.innerHTML = `
     <td>${rows}</td>
-    <td><input type="text" placeholder="Service/Product description"></td>
+    <td><input type="text" placeholder="Description"></td>
     <td><input type="number" value="1" min="1" oninput="calc()"></td>
     <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
     <td class="amount">0.00</td>
-    <td class="no-print"><button class="btn-danger" onclick="removeRow(this)" style="padding:6px 8px;font-size:12px">X</button></td>
+    <td class="no-print"><button class="btn-danger" onclick="removeRow(this)" style="padding:3px 5px;font-size:10px">X</button></td>
   `;
 }
 
@@ -221,21 +226,32 @@ async function downloadPDF() {
   const element = document.getElementById('invoice');
   const btn = document.getElementById('pdfBtn');
   const originalText = btn.innerText;
-  btn.innerText = '⏳ Creating PDF...';
+  btn.innerText = '⏳ PDF...';
   
   document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
+  await new Promise(resolve => setTimeout(resolve, 200));
   
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  const canvas = await html2canvas(element, {scale: 2, backgroundColor: '#ffffff', useCORS: true});
-  const imgData = canvas.toDataURL('image/png');
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  
-  pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-  let invNum = document.getElementById('invNum').value;
-  pdf.save(`Twinz_Invoice_${invNum}.pdf`);
+  try {
+    const canvas = await html2canvas(element, {
+      scale: 1.5, 
+      backgroundColor: '#ffffff', 
+      useCORS: true,
+      logging: false,
+      windowWidth: 900
+    });
+    
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = 210;
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+    
+    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight > 297 ? 297 : pdfHeight);
+    let invNum = document.getElementById('invNum').value;
+    pdf.save(`Twinz_Invoice_${invNum}.pdf`);
+  } catch(e) {
+    alert('PDF failed. Use Print > Save as PDF instead');
+    console.log(e);
+  }
   
   document.querySelectorAll('.no-print').forEach(el => el.style.display = '');
   btn.innerText = originalText;
