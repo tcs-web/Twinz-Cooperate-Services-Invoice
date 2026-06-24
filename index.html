@@ -18,25 +18,50 @@ h1{color:#2563eb;margin:0;font-size:20px;font-weight:700}
 .company-box.green{color:#16a34a}
 .form-group{margin-bottom:4mm}
 label{display:block;font-size:8px;font-weight:600;color:#4b5563;margin-bottom:1mm;text-transform:uppercase;letter-spacing:0.5px}
-input,textarea{width:100%;padding:2mm;border:1px solid #d1d5db;border-radius:3px;font-size:9px}
+input,textarea{width:100%;padding:2mm;border:1px solid #d1d5db;border-radius:3px;font-size:9px;background:white}
 textarea{resize:none;min-height:8mm}
 table{width:100%;border-collapse:collapse;font-size:9px;margin:4mm 0}
 th{background:#2563eb;color:white;padding:2mm;text-align:left;font-weight:600;font-size:8px}
 td{padding:1.5mm;border-bottom:1px solid #e5e7eb}
-td input{border:1px solid #e5e7eb;padding:1mm;font-size:9px}
+td input{border:none;padding:1mm;font-size:9px;background:transparent}
 .totals{margin-top:4mm;text-align:right;font-size:9px}
 .totals div{margin:1.5mm 0;display:flex;justify-content:flex-end;align-items:center;gap:3mm}
 .total-big{font-size:14px;font-weight:700;color:#16a34a}
 .footer-note{text-align:center;font-size:7px;color:#6b7280;margin-top:5mm;padding-top:3mm;border-top:1px solid #e5e7eb}
 
-/* Hide buttons when printing / saving PDF */
-@media print{.no-print{display:none}body{padding:0}.container{width:210mm}}
+.paid-stamp{display:none;position:absolute;top:120mm;left:50%;transform:translateX(-50%) rotate(-25deg);font-size:25mm;font-weight:900;color:#dc2626;border:2mm solid #dc2626;padding:4mm 8mm;border-radius:4mm;opacity:0.2;z-index:100;pointer-events:none}
+.paid-stamp.active{display:block}
+
+.admin-bar{display:flex;gap:2mm;margin-bottom:4mm}
+.admin-btn{flex:1;border:none;padding:2.5mm;border-radius:3px;font-size:8px;font-weight:600;cursor:pointer;color:white}
+.btn-orange{background:#f59e0b}
+.btn-orange:hover{background:#d97706}
+.btn-print{background:#2563eb}
+.btn-print:hover{background:#1d4ed8}
+.btn-paid{background:#dc2626}
+.btn-paid:hover{background:#b91c1c}
+
+@media print{
+.no-print{display:none}
+  body{padding:0}
+.container{width:210mm}
+  input,textarea{border:none!important;background:transparent!important}
+  td input{border:none!important}
 @page{size:A4 portrait;margin:10mm}
 </style>
 </head>
 <body>
 
 <div class="container" id="invoice">
+  <div class="paid-stamp" id="paidStamp">PAID</div>
+
+  <!-- Admin buttons - only show on screen -->
+  <div class="admin-bar no-print">
+    <button class="admin-btn btn-orange" id="unlockBtn" onclick="unlockFields()">🔓 Unlock</button>
+    <button class="admin-btn btn-print" onclick="window.print()">🖨️ Print PDF</button>
+    <button class="admin-btn btn-paid" onclick="togglePaid()">💰 Mark PAID</button>
+  </div>
+
   <div class="invoice-header">
     <div>
       <h1>INVOICE</h1>
@@ -57,12 +82,12 @@ td input{border:1px solid #e5e7eb;padding:1mm;font-size:9px}
 
   <div class="form-group">
     <label>INVOICE NUMBER</label>
-    <input type="text" id="invNum" value="TCS-880510">
+    <input type="text" id="invNum" value="TCS-880510" readonly>
   </div>
 
   <div class="form-group">
     <label>DATE</label>
-    <input type="date" id="invDate" value="2026-06-24">
+    <input type="date" id="invDate" value="2026-06-24" readonly>
   </div>
 
   <div class="form-group">
@@ -98,7 +123,7 @@ td input{border:1px solid #e5e7eb;padding:1mm;font-size:9px}
     <tbody id="itemsBody">
       <tr>
         <td>1</td>
-        <td><input type="text" placeholder="Tyre" value="Tyre"></td>
+        <td><input type="text" value="Tyre"></td>
         <td><input type="number" value="1" min="1" oninput="calc()"></td>
         <td><input type="number" value="900" step="0.01" oninput="calc()"></td>
         <td class="amount">900.00</td>
@@ -128,11 +153,6 @@ td input{border:1px solid #e5e7eb;padding:1mm;font-size:9px}
     Twinz Cooperate Services Pty Ltd | twinz.cooperate.services@gmail.com | 068 254 7352 / 069 894 9596<br>
     Office Burgersfort Praktiseer Ext 02 | We supply all over South Africa and abroad
   </div>
-
-  <!-- Buttons removed - clean client copy -->
-  <div class="no-print" style="margin-top:4mm;text-align:center;font-size:7px;color:#9ca3af">
-    Use your browser Print > Save as PDF to send to client
-  </div>
 </div>
 
 <script>
@@ -157,7 +177,26 @@ function calc() {
   document.getElementById('total').innerText = total.toFixed(2);
 }
 
+function unlockFields() {
+  document.querySelectorAll('input:not(#invNum):not(#invDate), textarea').forEach(el => {
+    el.readOnly = false;
+  });
+  document.getElementById('unlockBtn').innerText = '🔒 Locked';
+  setTimeout(() => document.getElementById('unlockBtn').innerText = '🔓 Unlock', 3000);
+}
+
+function togglePaid() {
+  document.getElementById('paidStamp').classList.toggle('active');
+}
+
 calc();
+
+// Auto-lock after 3 seconds
+setTimeout(() => {
+  document.querySelectorAll('input:not(#invNum):not(#invDate), textarea').forEach(el => {
+    el.readOnly = true;
+  });
+}, 3000);
 </script>
 </body>
 </html>
