@@ -2,41 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Twinz Cooperate Services - Invoice</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-:root{--primary:#1e40af;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;--green:#16a34a;--red:#dc2626;}
-*{box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);margin:0;padding:10px;color:#0f172a}
-.container{width:100%;max-width:100%;margin:0 auto;background:white;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:relative}
-.invoice-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:2px solid var(--primary);padding-bottom:6px}
-h1{color:var(--primary);margin:0;font-size:4.5vw;max-font-size:18px}
-.subtitle{font-size:2.5vw;color:var(--muted);margin-top:2px}
-.logo{width:18vw;max-width:70px;height:18vw;max-height:70px;object-fit:contain;border-radius:4px}
-.company-box{background:#f0f9ff;border:1px solid var(--primary);border-radius:5px;padding:6px;margin-bottom:8px;font-size:2.2vw;line-height:1.35}
-.company-box b{color:var(--primary)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
-@media(max-width:500px){.grid{grid-template-columns:1fr}}
-label{display:block;font-size:2vw;color:var(--muted);margin-bottom:2px;text-transform:uppercase;font-weight:600}
-input,textarea{width:100%;padding:4px;border:1px solid var(--border);border-radius:4px;font-size:2.8vw}
-textarea{resize:none;min-height:30px}
-table{width:100%;border-collapse:collapse;font-size:2.5vw;margin:6px 0}
-th{background:var(--primary);color:white;padding:4px;text-align:left;font-size:2.3vw}
-td{padding:3px;border-bottom:1px solid var(--border)}
-td input{border:none;padding:2px;background:transparent;width:100%;font-size:2.5vw}
-.btn{width:32%;background:var(--primary);color:white;border:none;padding:8px 4px;border-radius:5px;font-weight:600;cursor:pointer;font-size:2.8vw}
-.btn-green{background:var(--green)}
-.btn-red{background:var(--red)}
-.totals{text-align:right;margin-top:6px;font-size:2.8vw}
-.totals div{margin:2px 0}
-.total-big{font-size:4vw;font-weight:700;color:var(--green)}
-.footer-note{text-align:center;font-size:1.8vw;color:var(--muted);margin-top:6px;padding-top:4px;border-top:1px solid var(--border)}
-.paid-stamp{display:none;position:absolute;top:40%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);font-size:12vw;font-weight:900;color:var(--red);border:1vw solid var(--red);padding:2vw 4vw;border-radius:2vw;opacity:0.18;z-index:100;pointer-events:none}
+*{box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
+body{background:#fff;margin:0;padding:10mm;color:#000}
+.container{width:210mm;max-width:100%;min-height:277mm;background:white;margin:0 auto;position:relative}
+.invoice-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8mm}
+h1{color:#2563eb;margin:0;font-size:20px;font-weight:700}
+.subtitle{font-size:9px;color:#6b7280;margin-top:2mm}
+.logo{width:25mm;height:25mm;object-fit:contain}
+.company-box{background:#eff6ff;border:1px solid #3b82f6;border-radius:4px;padding:4mm;margin-bottom:6mm;font-size:9px;line-height:1.5}
+.company-box b{font-weight:600}
+.company-box.green{color:#16a34a}
+.form-group{margin-bottom:4mm}
+label{display:block;font-size:8px;font-weight:600;color:#4b5563;margin-bottom:1mm;text-transform:uppercase;letter-spacing:0.5px}
+input,textarea{width:100%;padding:2mm;border:1px solid #d1d5db;border-radius:3px;font-size:9px}
+textarea{resize:none;min-height:8mm}
+table{width:100%;border-collapse:collapse;font-size:9px;margin:4mm 0}
+th{background:#2563eb;color:white;padding:2mm;text-align:left;font-weight:600;font-size:8px}
+td{padding:1.5mm;border-bottom:1px solid #e5e7eb}
+td input{border:1px solid #e5e7eb;padding:1mm;font-size:9px}
+.totals{margin-top:4mm;text-align:right;font-size:9px}
+.totals div{margin:1.5mm 0;display:flex;justify-content:flex-end;align-items:center;gap:3mm}
+.total-big{font-size:14px;font-weight:700;color:#16a34a}
+.footer-note{text-align:center;font-size:7px;color:#6b7280;margin-top:5mm;padding-top:3mm;border-top:1px solid #e5e7eb}
+.paid-stamp{display:none;position:absolute;top:120mm;left:50%;transform:translateX(-50%) rotate(-25deg);font-size:25mm;font-weight:900;color:#dc2626;border:2mm solid #dc2626;padding:4mm 8mm;border-radius:4mm;opacity:0.2;z-index:100}
 .paid-stamp.active{display:block}
-.no-print{display:inline-block}
-@media print{.no-print{display:none}body{background:white;padding:0}.container{box-shadow:none;border-radius:0;padding:6mm}}
-@page{size:A4 portrait;margin:5mm}
+.no-print{display:flex;gap:2mm;margin-top:4mm}
+.btn{flex:1;background:#2563eb;color:white;border:none;padding:2.5mm;border-radius:3px;font-weight:600;cursor:pointer;font-size:8px}
+.btn-green{background:#16a34a}
+.btn-red{background:#dc2626}
+@media print{.no-print{display:none}body{padding:0}.container{width:210mm}}
+@page{size:A4 portrait;margin:10mm}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -51,88 +50,104 @@ td input{border:none;padding:2px;background:transparent;width:100%;font-size:2.5
       <h1>INVOICE</h1>
       <div class="subtitle">Professional Services | Nationwide & International</div>
     </div>
-    <img src="https://files.catbox.moe/0zympr.jpeg" class="logo" alt="Logo">
+    <img src="https://files.catbox.moe/0zympr.jpeg" class="logo" alt="TC Logo">
   </div>
 
   <div class="company-box">
     <b>Twinz Cooperate Services Pty Ltd</b><br>
-    Office Burgersfort Praktiseer Ext 02<br>
-    twinz.cooperate.services@gmail.com | 068 254 7352 / 069 894 9596<br>
-    VAT: 9819040198 | Reg: 2024/444303/07<br>
-    Standard Bank | Acc: 10 26 459 443 4 | Branch: 006145<br>
-    <span style="color:var(--green)">We supply all over SA & abroad</span>
+    <b>Address:</b> Office Burgersfort Praktiseer Ext 02<br>
+    <b>Email:</b> twinz.cooperate.services@gmail.com<br>
+    <b>Contact:</b> 068 254 7352 / 069 894 9596<br>
+    <b>Tax/VAT No:</b> 9819040198 | <b>Reg No:</b> 2024/444303/07<br>
+    <b>Bank:</b> Standard Bank | <b>Acc:</b> 10 26 459 443 4 | <b>Branch:</b> 006145<br>
+    <span class="green">We supply all over South Africa and abroad</span>
   </div>
 
-  <div class="grid">
-    <div>
-      <label>Invoice No</label>
-      <input type="text" id="invNum" value="TCS-">
-    </div>
-    <div>
-      <label>Date</label>
-      <input type="date" id="invDate">
-    </div>
+  <div class="form-group">
+    <label>INVOICE NUMBER</label>
+    <input type="text" id="invNum" value="TCS-">
   </div>
 
-  <div class="grid">
-    <div>
-      <label>Bill To</label>
-      <input type="text" id="custName" placeholder="Customer">
-    </div>
-    <div>
-      <label>VAT No</label>
-      <input type="text" id="custVAT" placeholder="Optional">
-    </div>
+  <div class="form-group">
+    <label>DATE</label>
+    <input type="date" id="invDate">
+  </div>
+
+  <div class="form-group">
+    <label>BILL TO - CUSTOMER NAME</label>
+    <input type="text" id="custName" placeholder="ABC Company Pty Ltd">
+  </div>
+
+  <div class="form-group">
+    <label>CUSTOMER VAT/TAX NO</label>
+    <input type="text" id="custVAT" placeholder="Optional">
+  </div>
+
+  <div class="form-group">
+    <label>CUSTOMER ADDRESS</label>
+    <textarea id="custAddress" placeholder="Street, City, Province"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>CONTACT / EMAIL</label>
+    <input type="text" id="custContact" placeholder="072... / email">
   </div>
 
   <table id="itemsTable">
     <thead>
       <tr>
         <th style="width:8%">#</th>
-        <th style="width:42%">Item</th>
+        <th style="width:52%">Description</th>
         <th style="width:10%">Qty</th>
-        <th style="width:20%">Price R</th>
-        <th style="width:20%">Amount R</th>
+        <th style="width:15%">Unit Price R</th>
+        <th style="width:15%">Amount R</th>
       </tr>
     </thead>
     <tbody id="itemsBody">
       <tr>
         <td>1</td>
-        <td><input type="text" placeholder="Description"></td>
+        <td><input type="text" placeholder="Tyre" value="Tyre"></td>
         <td><input type="number" value="1" min="1" oninput="calc()"></td>
-        <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
-        <td class="amount">0.00</td>
+        <td><input type="number" value="900" step="0.01" oninput="calc()"></td>
+        <td class="amount">900.00</td>
       </tr>
     </tbody>
   </table>
 
   <div class="totals">
-    <div>Subtotal: R<span id="subtotal">0.00</span></div>
-    <div>Discount: R<input type="number" id="discount" value="0" step="0.01" style="width:60px" oninput="calc()"></div>
-    <div><input type="checkbox" id="applyVAT" checked onchange="calc()"> VAT 15%: R<span id="vat">0.00</span></div>
-    <div class="total-big">TOTAL: R<span id="total">0.00</span></div>
+    <div>Subtotal: R<span id="subtotal">900.00</span></div>
+    <div>
+      <label style="margin:0;font-size:8px;text-transform:none">DISCOUNT R</label>
+      <input type="number" id="discount" value="120" step="0.01" style="width:25mm" oninput="calc()">
+    </div>
+    <div style="margin-top:3mm">
+      <input type="checkbox" id="applyVAT" onchange="calc()">
+      <label for="applyVAT" style="margin:0;font-size:8px;font-weight:400">APPLY VAT 15%</label>
+    </div>
+    <div class="total-big">TOTAL: R<span id="total">780.00</span></div>
   </div>
 
-  <div style="margin-top:6px">
-    <label style="font-size:2vw">Notes</label>
+  <div class="form-group" style="margin-top:5mm">
+    <label>NOTES / PAYMENT TERMS</label>
     <textarea>Thank you for choosing Twinz Cooperate Services!</textarea>
   </div>
 
   <div class="footer-note">
-    Twinz Cooperate | twinz.cooperate.services@gmail.com | 068 254 7352
+    Twinz Cooperate Services Pty Ltd | twinz.cooperate.services@gmail.com | 068 254 7352 / 069 894 9596<br>
+    Office Burgersfort Praktiseer Ext 02 | We supply all over South Africa and abroad
   </div>
 
-  <div style="margin-top:8px;display:flex;gap:4px" class="no-print">
+  <div class="no-print">
     <button class="btn" onclick="window.print()">Print</button>
-    <button class="btn-green" id="pdfBtn" onclick="downloadPDF()">PDF</button>
-    <button class="btn-red" onclick="togglePaid()">PAID</button>
+    <button class="btn-green" id="pdfBtn" onclick="downloadPDF()">Download PDF</button>
+    <button class="btn-red" onclick="togglePaid()">Mark PAID</button>
   </div>
 </div>
 
 <script>
 const { jsPDF } = window.jspdf;
-document.getElementById('invDate').valueAsDate = new Date();
-document.getElementById('invNum').value += Date.now().toString().slice(-6);
+document.getElementById('invDate').value = '2026-06-24';
+document.getElementById('invNum').value += '880510';
 
 function calc() {
   let rows = document.querySelectorAll('#itemsBody tr');
@@ -146,13 +161,12 @@ function calc() {
   });
 
   let discount = parseFloat(document.getElementById('discount').value) || 0;
-  let afterDiscount = Math.max(0, subtotal - discount);
+  let afterDiscount = subtotal - discount;
   let applyVAT = document.getElementById('applyVAT').checked;
   let vat = applyVAT? afterDiscount * 0.15 : 0;
   let total = afterDiscount + vat;
 
   document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-  document.getElementById('vat').innerText = vat.toFixed(2);
   document.getElementById('total').innerText = total.toFixed(2);
 }
 
@@ -163,28 +177,24 @@ function togglePaid() {
 async function downloadPDF() {
   const element = document.getElementById('invoice');
   const btn = document.getElementById('pdfBtn');
-  btn.innerText = 'Wait...';
+  btn.innerText = 'Creating...';
 
   document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 100));
 
-  // Capture at phone width so PDF fits screen
   const canvas = await html2canvas(element, {
-    scale: window.innerWidth / 400,
-    backgroundColor: '#fff',
-    width: element.offsetWidth,
-    windowWidth: element.offsetWidth
+    scale: 2,
+    backgroundColor: '#ffffff',
+    width: 794,
+    height: 1123
   });
 
   const pdf = new jsPDF('p', 'mm', 'a4');
-  const pdfWidth = 210;
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-  pdf.addImage(canvas.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, pdfWidth, Math.min(pdfHeight, 297));
+  pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297);
   pdf.save(`Twinz_Invoice_${document.getElementById('invNum').value}.pdf`);
 
-  document.querySelectorAll('.no-print').forEach(el => el.style.display = 'inline-block');
-  btn.innerText = 'PDF';
+  document.querySelectorAll('.no-print').forEach(el => el.style.display = 'flex');
+  btn.innerText = 'Download PDF';
 }
 
 calc();
