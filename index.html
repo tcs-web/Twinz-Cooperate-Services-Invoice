@@ -37,6 +37,8 @@ td input{border:none;padding:1.5mm;font-size:9px;background:transparent;font-wei
 .btn-orange{background:#ea580c}
 .btn-print{background:#1d4ed8}
 .btn-paid{background:#dc2626}
+.btn-add{background:#16a34a;width:100%;margin-top:2mm;padding:2mm;font-size:8px}
+.btn-remove{background:#dc2626;border:none;color:white;font-size:7px;padding:1mm 2mm;border-radius:2px;cursor:pointer}
 
 @media print{
 .no-print{display:none}
@@ -109,11 +111,12 @@ td input{border:none;padding:1.5mm;font-size:9px;background:transparent;font-wei
   <table id="itemsTable">
     <thead>
       <tr>
-        <th style="width:8%">#</th>
-        <th style="width:52%">Description</th>
-        <th style="width:10%">Qty</th>
-        <th style="width:15%">Unit Price R</th>
-        <th style="width:15%">Amount R</th>
+        <th style="width:7%">#</th>
+        <th style="width:48%">Description</th>
+        <th style="width:9%">Qty</th>
+        <th style="width:14%">Unit Price R</th>
+        <th style="width:14%">Amount R</th>
+        <th style="width:8%" class="no-print">Action</th>
       </tr>
     </thead>
     <tbody id="itemsBody">
@@ -123,9 +126,12 @@ td input{border:none;padding:1.5mm;font-size:9px;background:transparent;font-wei
         <td><input type="number" value="1" min="1" oninput="calc()"></td>
         <td><input type="number" value="900" step="0.01" oninput="calc()"></td>
         <td class="amount">900.00</td>
+        <td class="no-print"><button class="btn-remove" onclick="removeItem(this)">❌</button></td>
       </tr>
     </tbody>
   </table>
+
+  <button class="btn-add no-print" onclick="addItem()">➕ Add Item</button>
 
   <div class="totals">
     <div>Subtotal: R<span id="subtotal">900.00</span></div>
@@ -155,7 +161,8 @@ td input{border:none;padding:1.5mm;font-size:9px;background:transparent;font-wei
 function calc() {
   let rows = document.querySelectorAll('#itemsBody tr');
   let subtotal = 0;
-  rows.forEach(row => {
+  rows.forEach((row, i) => {
+    row.cells[0].innerText = i + 1;
     let qty = parseFloat(row.cells[2].querySelector('input').value) || 0;
     let price = parseFloat(row.cells[3].querySelector('input').value) || 0;
     let amount = qty * price;
@@ -171,6 +178,27 @@ function calc() {
 
   document.getElementById('subtotal').innerText = subtotal.toFixed(2);
   document.getElementById('total').innerText = total.toFixed(2);
+}
+
+function addItem() {
+  let tbody = document.getElementById('itemsBody');
+  let rowCount = tbody.rows.length + 1;
+  let row = tbody.insertRow();
+  row.innerHTML = `
+    <td>${rowCount}</td>
+    <td><input type="text" placeholder="Item description"></td>
+    <td><input type="number" value="1" min="1" oninput="calc()"></td>
+    <td><input type="number" value="0" step="0.01" oninput="calc()"></td>
+    <td class="amount">0.00</td>
+    <td class="no-print"><button class="btn-remove" onclick="removeItem(this)">❌</button></td>
+  `;
+  calc();
+}
+
+function removeItem(btn) {
+  let row = btn.closest('tr');
+  row.remove();
+  calc();
 }
 
 function unlockFields() {
